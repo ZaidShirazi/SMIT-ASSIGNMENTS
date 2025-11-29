@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+
+html,body{
+    width: 100%;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-x: hidden;
+}
+
+nav{
+    /* border: 1px solid black; */
+    min-height: 50px; 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    font-size: 1.1em;
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+}
+
+nav select{
+    width: 250px;
+    height: 35px;
+    font-size: 1rem;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+main{
+    background-color: lightblue;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+main a{
+    text-decoration: none;
+    color: black;
+}
+
+.colors{
+    width: 20%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.copy{
+   height: 80%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 1.2em;
+}
+
+.copy-span{
+    color: rgba(255, 255, 255, 0.8);
+    border: 3px solid white;
+    border-radius: 5px;
+    width: 50%;
+    height: 40%;
+    margin-top: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+.copy-span:hover{
+    opacity: 1;
+    transition: 0.6s ease;
+}
+
+.color-text{
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.3em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+/* Media Query Starts From Here */
+
+@media screen and (max-width:1024px){
+    
+    .color-text{
+        display: none;
+    }
+
+    .copy-span{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width:520px){
+
+    html,body{
+        min-width: 344px;
+        height: 882px;
+    }
+
+    nav select{
+    width: 115px;
+    }
+
+}
+
+@media (min-width:1400px) and (max-width:2560px){
+    body{
+        font-size: 1.5em;
+    }
+}
