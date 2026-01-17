@@ -9,7 +9,7 @@ function calculator(){
         return;
     }
 
-    var operators = ['+', '-', '*', '/', '%'];
+    var operators = ['+', '-', '*', '/', '%', '.'];
     var endOfInput = inputScreenText.slice(-1);
 
     // input end on operator logic
