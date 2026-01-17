@@ -30,9 +30,24 @@ h1{
 }
 
 li{
-    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: rgb(54,123,240);
     font-size: 1.5em;
     list-style-type: square;
-    line-height: 2em;
+    display: block;
+    border-radius: 10px;
+    list-style: none;
+    margin-bottom: 14px;
+    }
+    
+    
+    a {
+        display: block;
+        padding: 14px 18px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 1rem;
 }

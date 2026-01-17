@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body{
+    background-color: #1e1f23;
+    min-height: 100dvh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    color: rgb(25,145,255);
+    margin-bottom: 3%;
+    text-decoration: underline solid rgb(25,145,255);
+    text-underline-offset: 10px;
+}
+
+#main{
+    width: 290px;
+    height: 457px;
+    border: 1px solid black;
+}
+
+#inputScreenDiv{
+    font-size: 1.5rem;
+    color: white;
+}
+
+#resultScreenDiv{
+    font-size: 1.9rem;
+    display: flex;
+    justify-content: flex-end;
+    color: rgb(25,145,255);
+}
+
+#inputScreenDiv,
+#resultScreenDiv{
+    width: 100%;
+    height: 80px;
+    /* color: white;  */
+    border: 1px solid black;
+    padding: 8px;
+    background-color: rgb(48,49,54);
+}
+
+#buttonDiv{
+    background-color: rgb(48,49,54);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10%;
+
+}
+
+button{
+    background-color: rgb(48,49,54);
+    color: rgb(25,145,255);
+    font-size: 1.5em;
+    border-radius: 10%;
+    margin-top: 5%;
+    padding: 5px;
+    width: 15%;
+}
+
+#DeleteButton{
+    width: 80px;
+}
+
+footer{
+    background-color: rgb(48,49,54);
+    width: 88%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+    
+}

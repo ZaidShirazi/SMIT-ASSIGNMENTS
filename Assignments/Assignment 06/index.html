@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saylani Calculator Assignment</title>
+    <link rel="stylesheet" href="./style.css" type="text/css">
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+
+    <!-- Calc Screens -->
+    <div id="main">
+
+        <div id="inputScreenDiv"></div>
+        <div id="resultScreenDiv"></div>
+
+     <div id="buttonDiv">
+
+    <!-- Calc Buttons -->
+
+    <button onclick="editScreen(7)">7</button>
+    <button onclick="editScreen(8)">8</button>
+    <button onclick="editScreen(9)">9</button>
+    <button onclick="editScreen('-')">-</button> 
+    <button onclick="editScreen(4)">4</button>
+    <button onclick="editScreen(5)">5</button>
+    <button onclick="editScreen(6)">6</button>
+    <button onclick="editScreen('+')">+</button>
+    <button onclick="editScreen(1)">1</button>
+    <button onclick="editScreen(2)">2</button>
+    <button onclick="editScreen(3)">3</button>
+    <button onclick="editScreen('*')">*</button>
+    <button onclick="editScreen('%')">%</button>
+    <button onclick="editScreen(0)">0</button>
+    <button onclick="editScreen('.')">.</button> 
+    <button onclick="editScreen('/')">/</button> 
+     
+
+    <footer>
+    <button id="ClearButton" onclick="editScreen('C')">C</button>
+    <button id="DeleteButton" onclick="editScreen('Del')">Del</button> 
+    <button onclick="calculator()">=</button>
+    </footer>
+
+     </div>   
+    
+    </div>
+
+    
+
+
+
+    <!-- JS FILE CONNECTION -->
+     <script src="./app.js"></script>
+</body>
+</html>
