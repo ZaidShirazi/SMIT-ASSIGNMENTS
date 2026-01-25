@@ -9,10 +9,12 @@ var amPmSpan = document.getElementById('amPmSpan');
 // digital Clock logic
 function digitalClock() {
 
-  var currentTime = new Date();
-  var hour = currentTime.getHours();
+  var dateObj = new Date();
+  var hour = dateObj.getHours();
   var amPm = "";
 
+  // am pm logic
+  
 if(hour == 0){
   hour = 12;
   amPm = "AM";
@@ -29,7 +31,7 @@ else{
   }
 }
 
-  //--------------------------------
+
   if (hour < 10){
     
     hourSpan.innerText = "0" + hour;
@@ -38,30 +40,25 @@ else{
     hourSpan.innerText = hour;
   }
   
-  if (currentTime.getMinutes()<10){
+  if (dateObj.getMinutes()<10){
     
-    minSpan.innerText = "0" + currentTime.getMinutes();
+    minSpan.innerText = "0" + dateObj.getMinutes();
     
   } else {
-    minSpan.innerText = currentTime.getMinutes();
+    minSpan.innerText = dateObj.getMinutes();
   }
   
-  if (currentTime.getSeconds()<10) {
+  if (dateObj.getSeconds()<10) {
     
-    secSpan.innerText = "0" + currentTime.getSeconds();
+    secSpan.innerText = "0" + dateObj.getSeconds();
     
   } else {
     
-    secSpan.innerText = currentTime.getSeconds();
+    secSpan.innerText = dateObj.getSeconds();
     
   }
 
   amPmSpan.innerText = amPm;
-  
-}  
-  setInterval(digitalClock, 1000);
-
-  var dateObj = new Date();
   
   var days = ['Sun', 'Mon', 'Tue', 'Wed','Thur', 'Fri', 'Sat' ];
 
@@ -81,3 +78,6 @@ else{
   monthSpan.innerText = months[currentMonth];
   dateSpan.innerText = date;
   yearSpan.innerText = currentYear;
+  
+}  
+  setInterval(digitalClock, 1000);
