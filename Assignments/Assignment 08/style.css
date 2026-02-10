@@ -1,0 +1,91 @@
+*{
+    box-sizing: border-box;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+@keyframes fadeInAnimation{
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+    }
+
+body{
+    min-height: 100vh;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    opacity: 0;
+    animation: fadeInAnimation ease 3s;
+    animation-fill-mode: forwards;
+}
+
+.head{
+    /* position: fixed; */
+    top: 0px;
+    z-index: 1000;
+    width: 100%;
+    background: rgb(20, 30, 48);
+    display: flex;
+    padding: 30px;
+    justify-content: space-around;
+    border-bottom: 2px dashed white;
+    margin-bottom: 20px;
+}
+
+.scoreBox{
+    width: 300px;
+    border: 2px solid #367bf0;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+.scoreBox span{
+    font-weight: bold;
+}
+
+#main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.box{
+    height: 200px;
+    width: 200px;
+    border-radius: 15px;
+}
+#matchBox{
+    height: 150px;
+    width: 150px;
+    border-radius: 15px;
+
+}
+
+@media (max-width: 650px) {
+    .head {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 10px;
+    }
+
+    .scoreBox {
+        width: 100%; 
+        max-width: 280px;
+        font-size: 1rem;
+        padding: 10px 0px;
+    }
+
+    .box {
+        height: 140px;
+        width: 140px;
+    }
+
+    #matchBox {
+        height: 120px;
+        width: 120px;
+    }
+}
