@@ -2,7 +2,7 @@
 var mainDiv = document.getElementById("main");
 var matchDiv = document.getElementById("matchBox");
 var scoreSpan = document.getElementById("score");
-var colors = ['red','blue','yellow','green','orange','aqua'];
+var colors = ['red','blue','yellow','green','orange','aqua', 'tan', 'teal', 'lightslategray', 'fuchsia', 'seashell', 'mediumslateblue', 'rebeccapurple'];
 var score = 0;
 var messageDiv = document.getElementById('messageDiv');
 
@@ -32,16 +32,27 @@ function boxClickHandler(event){
         score++;
         scoreSpan.innerText = score;
         matchDiv.style.backgroundColor = randomColor();
+
     }else if(score<=0){
-            score = 0;
-            scoreSpan.innerText = 0;
-            messageDiv.innerText = 'Oops! You clicked Wrong Box';
-            messageDiv.style.color = 'red';
+        score = 0;
+        scoreSpan.innerText = 0;
+        messageDiv.innerText = 'Score is at 0 !';
+        messageDiv.style.color = 'red';
+        // Remove the animation so it can be reset
+        messageDiv.style.animation = 'none';
+        // Trigger a "reflow" (this forces the browser to notice the animation was removed)
+        void messageDiv.offsetWidth; 
+        messageDiv.style.animation = 'shake 0.5s';
     }else{
-            score--;
+        score--;
         scoreSpan.innerText = score;
         messageDiv.innerText = 'Oops! You clicked Wrong Box';
         messageDiv.style.color = 'red';
+        // Remove the animation so it can be reset
+        messageDiv.style.animation = 'none';
+        // Trigger a "reflow" (this forces the browser to notice the animation was removed)
+        void messageDiv.offsetWidth; 
+        messageDiv.style.animation = 'shake 0.5s';
         }
         
     }
