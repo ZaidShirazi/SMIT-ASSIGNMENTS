@@ -9,13 +9,14 @@ var messageDiv = document.getElementById('messageDiv');
 // inital assign to score span
 scoreSpan.innerText = score;
 
-/// to generate the random color
+// to generate the random color
 function randomColor(){
     var randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
 }
 
 // assign color to the match box div
+
 matchDiv.style.backgroundColor = randomColor();
 
 function boxClickHandler(event){
@@ -32,6 +33,7 @@ function boxClickHandler(event){
         score++;
         scoreSpan.innerText = score;
         matchDiv.style.backgroundColor = randomColor();
+        targetDiv.style.backgroundColor = randomColor();
 
     }else if(score<=0){
         score = 0;
@@ -69,5 +71,6 @@ function boxClickHandler(event){
     
         mainDiv.appendChild(divElm)  /// node ---> DOM
     }
+    
 
 // creating divs and applying colors, then append to the main div element

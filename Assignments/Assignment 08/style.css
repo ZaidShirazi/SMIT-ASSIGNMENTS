@@ -24,18 +24,20 @@ body{
 }
 
 .head{
+    position: sticky;
+    top: 0;
     z-index: 1000;
     width: 100%;
     background: rgb(20, 30, 48);
     display: flex;
-    padding: 30px;
+    padding: 20px;
     justify-content: space-around;
     border-bottom: 2px dashed white;
-    margin-bottom: 25px;
+    margin-bottom: 25px; 
 }
 
 .scoreBox{
-    width: 300px;
+    width: 300px; height: 110px;
     border: 2px solid #367bf0;
     border-radius: 15px;
     display: flex;
@@ -50,6 +52,7 @@ body{
     font-weight: bold;
 }
 
+
 #main{
     display: flex;
     flex-wrap: wrap;
@@ -60,21 +63,35 @@ body{
 }
 
 .box{
-    height: 200px;
-    width: 200px;
+    height: 170px;
+    width: 170px;
     border-radius: 15px;
+    cursor: pointer;
+}
+.box:hover{
+    transform: scale(1.05);
+}
+.box{
+    transition: transform 0.3s ease; 
 }
 #matchBox{
-    height: 150px;
-    width: 150px;
+    height: 110px;
+    width: 115px;
     border-radius: 15px;
+    cursor: pointer;
+}
+#matchBox:hover{
+    transform: scale(1.05);
+}
+#matchBox{
+    transition: transform 0.3s ease; 
 }
 
 /* Media Queries for Small Screens */
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
     .head {
-        flex-direction: row;
+        /* flex-direction: row; */
         align-items: center;
         gap: 20px;
         padding: 20px 10px;
@@ -82,41 +99,62 @@ body{
 
     .scoreBox {
         width: 100%;
-        height: 114px;
+        /* height: 110px; */
         max-width: 280px;
         font-size: 1rem;
         padding: 10px 0px;
     }
 
     .box {
-        height: 114px;
-        width: 115px;
+        height: 135px;
+        width: 135px;
     }
 
-    #matchBox {
-        height: 114px;
-        width: 115px;
-    }
+    
 }
 
 @media (max-width: 470px){
 
     .head{
-        flex-direction: column;
+        flex-direction: row;
     }
     #matchBox{
-        width:280px;
+        height: 100px;
+        width: 100px;
+    }
+    .box {
+        height: 115px;
+        width: 115px;
+    }
+    .scoreBox{
+        width: 280px; height: 100px;
     }
 
 }
 
-@media (max-width: 320px){
+@media (max-width: 400px){
+    .box,#matchBox {
+        height: 100px;
+        width: 100px;
+    } 
+    #matchBox{width: 90px; height: 90px;}
+    .scoreBox{width: 240px; height: 80px;}
+}
+
+@media (max-width: 340px){
     body{
         min-width: 320px;
     }
 
     .box {
-        height: 114px;
+        height: 90px;
+        width: 90px;
+    }
+
+    .scoreBox,#matchBox{
+        height: 80px; 
+    }
+    #matchBox{
         width: 115px;
     }
 }
@@ -131,7 +169,8 @@ body{
     }
 
     .scoreBox{
-    width: 650px;
+    width: 47rem; height: 300px;
+    border-radius: 47px;
     font-size: 2.9rem;
 }
 }
