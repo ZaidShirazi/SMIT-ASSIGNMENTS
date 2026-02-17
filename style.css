@@ -6,6 +6,10 @@
     color: rgb(54,123,240);
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 html,body{
     height: 100%;
     width: 100%;
@@ -42,12 +46,16 @@ li{
     margin-bottom: 14px;
     }
     
-    
     a {
         display: block;
         padding: 14px 18px;
-        background: rgba(255, 255, 255, 0.08);
+        background: #222831;
         border-radius: 10px;
         text-decoration: none;
         font-size: 1rem;
 }
+
+    a:hover{
+        transform: translateX(8px);
+        transition: all 0.3s ease;
+    }
