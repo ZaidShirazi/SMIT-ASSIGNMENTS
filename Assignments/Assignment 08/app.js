@@ -33,7 +33,6 @@ function boxClickHandler(event){
         score++;
         scoreSpan.innerText = score;
         matchDiv.style.backgroundColor = randomColor();
-        targetDiv.style.backgroundColor = randomColor();
 
     }else if(score<=0){
         score = 0;
@@ -45,6 +44,7 @@ function boxClickHandler(event){
         // Trigger a "reflow" (this forces the browser to notice the animation was removed)
         void messageDiv.offsetWidth; 
         messageDiv.style.animation = 'shake 0.5s';
+        renderBoxes();
     }else{
         score--;
         scoreSpan.innerText = score;
@@ -55,11 +55,15 @@ function boxClickHandler(event){
         // Trigger a "reflow" (this forces the browser to notice the animation was removed)
         void messageDiv.offsetWidth; 
         messageDiv.style.animation = 'shake 0.5s';
+        renderBoxes();
         }
         
     }
 
-    for(var i=1; i <=30; i++){
+    function renderBoxes(){
+        mainDiv.innerHTML = "";//Reset of mainDiv
+
+        for(var i=1; i <=30; i++){
         var divElm = document.createElement("div");
         // divElm.innerText = "div " + i;
         divElm.className = "box";
@@ -70,7 +74,9 @@ function boxClickHandler(event){
         divElm.addEventListener("click", boxClickHandler )
     
         mainDiv.appendChild(divElm)  /// node ---> DOM
+        }
     }
+    renderBoxes();
     
 
 // creating divs and applying colors, then append to the main div element
