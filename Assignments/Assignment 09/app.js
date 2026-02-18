@@ -11,22 +11,25 @@ function addTodo(){
     }
 
     // todo object
-    var todoObj = {
+    const todoObj = {
         text: todoInput.value,
         id:  Math.floor(Math.random() * 900000) + 100000,// 6 Digit ID
         createdAt: new Date(),
     }
     todoDatabase.push(todoObj);// storing todo object in array
+    console.log(todoDatabase); // for checking
     renderTodo();
     todoInput.value = ""; // todo input value reset to empty
 }
 
 //2. Todo Render function
+
 function renderTodo(){
+    todoListContainer.innerHTML = '';
     for(var i = 0; i<todoDatabase.length; i++){
 
-        todoListContainer.innerHTML = 
-        `<div>
+        todoListContainer.innerHTML += 
+        `<div class = "todos">
             <span>${todoDatabase[i].text}</span>
         <div>`;
     }

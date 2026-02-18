@@ -13,10 +13,11 @@
 <body>
     
     <main>
-        <div>
-            <input type="text" id="todoInput" placeholder="Enter todo here..." autofocus>
-            <button id="addButton" onClick="addTodo()">Add</button>
-            <button id="updateButton" onClick="updateTodo()">Update</button>
+        <div id="inputContainer">
+            <input type="text" id="todoInput" placeholder="Add your new todo..." autofocus>
+            <button type="button" id="addButton" onClick="addTodo()">
+                <img src="./assets/images/plus.svg" alt="add icon image" width="40px" >
+            </button>
         </div>
 
         <div id="todoListContainer"> 
