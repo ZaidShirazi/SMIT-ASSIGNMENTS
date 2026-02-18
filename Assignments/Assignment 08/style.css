@@ -2,17 +2,30 @@
     box-sizing: border-box;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
+/* Fade Animation */
 @keyframes fadeInAnimation{
   0% {opacity: 0;}
   100% {opacity: 1;}
     }
-
+/* wrong color error animation */
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
   50% { transform: translateX(5px); }
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
+}
+
+/* head animation */
+@keyframes slideDown{
+  
+    from{
+        transform: translateY(-100%);
+    }
+    to{
+        transform: translateY(0);
+    }
+
 }
 
 body{
@@ -34,6 +47,7 @@ body{
     justify-content: space-around;
     border-bottom: 2px dashed white;
     margin-bottom: 25px; 
+    animation: slideDown 1s ease-out forwards;
 }
 
 .scoreBox{
@@ -59,7 +73,6 @@ body{
     justify-content: center;
     align-items: center;
     gap: 12px;
-    
 }
 
 .box{
