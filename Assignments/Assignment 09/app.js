@@ -30,8 +30,17 @@ function renderTodo(){
 
         todoListContainer.innerHTML += 
         `<div class = "todos">
-            <span>${todoDatabase[i].text}</span>
+            <span>${(i+1) +". "+ todoDatabase[i].text}</span>
+            <button type="button" id="updateButton" onClick="updateTodo()">
+                <img src="./assets/images/updateIcon.svg" alt="update icon image" width="40px" height ="30px" >
+            </button>
+
+            <button type="button" id="deleteButton" onClick="deleteTodo()">
+                <img src="./assets/images/deleteIcon.svg" alt="delete icon image" width="40px" height ="30px" >
+            </button>
         <div>`;
+
+        todoListContainer.style.backgroundImage = "none";
     }
 }
 
