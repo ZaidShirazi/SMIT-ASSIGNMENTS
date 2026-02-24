@@ -40,7 +40,11 @@ function renderTodo(){
                 <img src="./assets/images/deleteIcon.svg" alt="delete icon image" width="40px" height ="30px" >
             </button>
         <div>`;
+    }
 
+    if(todoDatabase.length == 0){
+        todoListContainer.style.backgroundImage = "url('./assets/images/todoPic.jpg')";
+    } else{
         todoListContainer.style.backgroundImage = "none";
     }
 }
