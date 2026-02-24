@@ -35,7 +35,6 @@ main {
     background-color: #E0DFFF;
     border: none;
     border-radius: 16px;
-
 }
 
 #todoTitle{
@@ -73,6 +72,11 @@ button {
     background: transparent;
     border: none;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#updateButton{
+    display: none; 
 }
 
 #todoListContainer {
@@ -98,5 +102,8 @@ button {
 
     span{
         margin-right: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
