@@ -23,7 +23,7 @@ body {
 }
 
 main {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 500px;
     height: 500px;
     padding: 1rem;
@@ -40,11 +40,14 @@ main {
 #todoTitle{
     font-size: 1.5rem;
     color: #1918A4;
+    font-weight: bold;
 }
 
 #inputContainer {
+    /* border: 1px solid red; */
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+    justify-content: space-between;
     align-items: center;
     width: 400px;
     border-radius: 30px;
@@ -72,28 +75,56 @@ button {
     cursor: pointer;
 }
 
-#updateButton{
+#clearButtonBox{
+    width: 400px;
+    display: flex;
+    justify-content: flex-end;
+    display: none;
+}
+
+#clearAll{
+    background-color: #ff4d4d;
+    color: white;
+    height: 40px; width: 110px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#saveButton{
     display: none; 
+    background-color: rgb(92, 36, 238);
+    color: white;
+    font-size: 14px;
+    border-radius: 12px;
+    height: 40px; width: 110px;
 }
 
 #todoListContainer {
     
-    width: 400px; height: 350px;
+    width: 400px; height: 350px; 
     background-image: url("./assets/images/todoPic.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     display: flex;
     flex-direction:column;
-    gap: 4%;
+    gap: 18px;
+    overflow-y: auto;
+    /* border: 1px solid red; */
+}
+
+#todoListContainer::-webkit-scrollbar {
+    display: none; /* it hides the scroll bar (Chrome, Safari) */
 }
 
 .todos {
     border: 1px solid black;
     overflow: hidden;
-    border-radius: 30px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
+    flex-shrink: 0; /* stops todos from shrinking */
     padding: 4px 12px;
     font-size: 1.2em;
 
@@ -103,6 +134,11 @@ button {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+}
+
+.doneTodos{
+    text-decoration: line-through;
+    opacity: 0.5;
 }
 
 /* media queries for bigger screen */
@@ -142,6 +178,9 @@ button {
             font-size: 20px;
         }
     }
+    #clearButtonBox{
+        width: 700px; max-width: 1700px;
+    }
 }
 
 /* media queries for smaller screen */
@@ -154,7 +193,7 @@ button {
         width: 300px;
     }
 
-    #todoListContainer{
+    #todoListContainer,#clearButtonBox{
         width: 300px;
     }
 }
@@ -174,7 +213,7 @@ button {
         }
     }
 
-    #todoListContainer{
+    #todoListContainer,#clearButtonBox{
         width: 250px;
     }
 }

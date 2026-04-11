@@ -1,7 +1,10 @@
 var todoDatabase = []; // todos array which works like a database
 var todoInput = document.getElementById('todoInput');
 var todoListContainer = document.getElementById('todoListContainer');
+var clearAllDiv = document.getElementById("clearButtonBox");
 var todoToBeUpdate = null;
+
+getlocalStorageData(); // calling function to get existing data first 
 
 //1. Todo Add function
 function addTodo(){
@@ -16,8 +19,13 @@ function addTodo(){
         text: todoInput.value,
         id:  Math.floor(Math.random() * 900000) + 100000,// 6 Digit ID
         createdAt: new Date(),
+        isCompleted: false,
     }
     todoDatabase.push(todoObj);// storing todo object in array
+
+    // storing the data in the local Storage
+    window.localStorage.setItem("todos", JSON.stringify(todoDatabase));
+
     console.log(todoDatabase); // for checking
     renderTodo();
     todoInput.value = ""; // todo input value reset to empty
@@ -29,17 +37,44 @@ function renderTodo(){
     todoListContainer.innerHTML = '';
     for(var i = 0; i<todoDatabase.length; i++){
 
-        todoListContainer.innerHTML += 
-        `<div class = "todos">
-            <span>${(i+1) +". "+ todoDatabase[i].text}</span>
-            <button type="button" id="editButton" onClick="editTodo(${todoDatabase[i].id})">
-                <img src="./assets/images/editIcon.svg" alt="edit icon image" width="40px" height ="30px" >
-            </button>
+        if (todoDatabase[i].isCompleted === true) {
 
-            <button type="button" id="deleteButton" onClick="deleteTodo(${todoDatabase[i].id})">
+            todoListContainer.innerHTML += 
+            `<div class = "todos doneTodos">
+                <span>${(i+1) +". "+ todoDatabase[i].text}</span>
+
+                <button disabled onClick="doneTodo(${todoDatabase[i].id})">
+                    <img src="./assets/images/doneIcon.svg" alt="done icon image" width="40px" height ="30px" >
+                </button>
+
+                <button disabled type="button" id="editButton" onClick="editTodo(${todoDatabase[i].id})">
+                <img src="./assets/images/editIcon.svg" alt="edit icon image" width="40px" height ="30px" >
+                </button>
+
+                <button type="button" id="deleteButton" onClick="deleteTodo(${todoDatabase[i].id})">
                 <img src="./assets/images/deleteIcon.svg" alt="delete icon image" width="40px" height ="30px" >
-            </button>
-        <div>`;
+                </button>
+            <div>`;
+            
+        }
+        else{
+
+            todoListContainer.innerHTML += 
+            `<div class = "todos">
+                <span>${(i+1) +". "+ todoDatabase[i].text}</span>
+
+                <button onClick="doneTodo(${todoDatabase[i].id})">
+                    <img src="./assets/images/doneIcon.svg" alt="done icon image" width="40px" height ="30px" >
+                </button>
+                <button type="button" id="editButton" onClick="editTodo(${todoDatabase[i].id})">
+                <img src="./assets/images/editIcon.svg" alt="edit icon image" width="40px" height ="30px" >
+                </button>
+
+                <button type="button" id="deleteButton" onClick="deleteTodo(${todoDatabase[i].id})">
+                <img src="./assets/images/deleteIcon.svg" alt="delete icon image" width="40px" height ="30px" >
+                </button>
+            <div>`;
+        }
     }
 
     if(todoDatabase.length == 0){
@@ -47,13 +82,19 @@ function renderTodo(){
     } else{
         todoListContainer.style.backgroundImage = "none";
     }
+
+    if(todoDatabase.length > 1){
+        clearAllDiv.style.display = "flex";
+    }else{
+        clearAllDiv.style.display = "none";
+    }
 }
 
 //3. Todo Edit function
 
 function editTodo(id) {
     var addButton = document.getElementById('addButton');
-    var updateButton = document.getElementById('updateButton');
+    var saveButton = document.getElementById('saveButton');
     for(var i = 0; i<todoDatabase.length; i++){
         if(todoDatabase[i].id === id){
             todoInput.value = todoDatabase[i].text;
@@ -62,9 +103,9 @@ function editTodo(id) {
         }
             
         addButton.style.display = "none";
-        updateButton.style.display = "block";
+        saveButton.style.display = "block";
         
-        todoInput.focus();
+        todoInput.focus(); // for focus the input field automatically 
     }
 }
 
@@ -72,11 +113,11 @@ function editTodo(id) {
 
 function updateTodo(){
     var addButton = document.getElementById('addButton');
-    var updateButton = document.getElementById('updateButton');
+    var saveButton = document.getElementById('saveButton');
     todoToBeUpdate.text = todoInput.value;
     todoInput.value = "";
     addButton.style.display = "block";
-    updateButton.style.display = "none";
+    saveButton.style.display = "none";
     renderTodo();
 }
 
@@ -87,8 +128,56 @@ function deleteTodo(id){
    for (var i = 0; i < todoDatabase.length; i++) {
        if (todoDatabase[i].id === id) {
            todoDatabase.splice(i,1);
+
+           window.localStorage.setItem("todos", JSON.stringify(todoDatabase));// update the localStorage todos from todos array
+
            renderTodo();
            todoInput.value = "";
        }
    }
 }
+
+//6.  function to get data from local storage
+
+function getlocalStorageData(){
+    
+    var localSorageData = window.localStorage.getItem("todos");
+    localSorageData = JSON.parse(localSorageData);
+
+    if(localSorageData !== null){
+        todoDatabase = localSorageData;
+    }
+    renderTodo();
+
+}
+
+//7. Done todo function
+
+function doneTodo(id){
+    
+    for(var i = 0; i < todoDatabase.length; i++){
+        
+        if(todoDatabase[i].id == id){
+            todoDatabase[i].isCompleted = true;
+            break;
+        }
+        
+    }
+    window.localStorage.setItem('todos', JSON.stringify(todoDatabase));
+    renderTodo();
+}
+
+//8. Todo Delete all function
+
+function deleteAllTodo(){
+    var saveButton = document.getElementById('saveButton');
+    window.localStorage.removeItem("todos"); // removes all todos from local storage
+    todoDatabase = []; // reseting the todo array
+    todoInput.value = "";
+    if(saveButton.style.display === "block"){
+    saveButton.style.display = "none";
+        addButton.style.display = "block";
+    }
+    renderTodo();
+}
+
