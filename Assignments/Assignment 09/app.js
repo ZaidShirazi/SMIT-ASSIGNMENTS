@@ -105,7 +105,7 @@ function editTodo(id) {
         addButton.style.display = "none";
         saveButton.style.display = "block";
         
-        todoInput.focus(); // for focus the input field automatically 
+        todoInput.focus(); // this is for focus the input field automatically when the edit button button is clicked
     }
 }
 
@@ -118,6 +118,8 @@ function updateTodo(){
     todoInput.value = "";
     addButton.style.display = "block";
     saveButton.style.display = "none";
+
+    window.localStorage.setItem("todos", JSON.stringify(todoDatabase));// update the localStorage todos from todos array
     renderTodo();
 }
 
