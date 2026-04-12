@@ -13,11 +13,23 @@ function addTodo(){
         alert("Empty input detected! Please try again.");
         return;
     }
+    // input length validation. should be greater than 2
+    if(todoInput.value.length < 3){
+        alert("Invalid input, Please try again.");
+        return;
+    }
+
+    for(var i = 0; i<todoDatabase.length; i++){
+        if(todoDatabase[i].text === todoInput.value){
+            alert("This todo is already exists");
+            return;
+        }
+    }
 
     // todo object
-    const todoObj = {
+    var todoObj = {
         text: todoInput.value,
-        id:  Math.floor(Math.random() * 900000) + 100000,// 6 Digit ID
+        id:  Math.floor(Math.random() * 900000) + 100000, // 6 digit random id
         createdAt: new Date(),
         isCompleted: false,
     }
@@ -95,18 +107,18 @@ function renderTodo(){
 function editTodo(id) {
     var addButton = document.getElementById('addButton');
     var saveButton = document.getElementById('saveButton');
+
     for(var i = 0; i<todoDatabase.length; i++){
         if(todoDatabase[i].id === id){
             todoInput.value = todoDatabase[i].text;
             indexToBeUpdate = i;
             todoToBeUpdate = todoDatabase[i];
+            break;
         }
-            
-        addButton.style.display = "none";
-        saveButton.style.display = "block";
-        
-        todoInput.focus(); // this is for focus the input field automatically when the edit button button is clicked
     }
+    addButton.style.display = "none";
+    saveButton.style.display = "block";
+    todoInput.focus(); // for focus the input field automatically when the edit button is clicked
 }
 
 //4. Todo Update function
@@ -114,7 +126,26 @@ function editTodo(id) {
 function updateTodo(){
     var addButton = document.getElementById('addButton');
     var saveButton = document.getElementById('saveButton');
+
+    // input length validation. should be greater than 2
+    if(todoInput.value.length < 3){
+        alert("Invalid input, Please try again.");
+        return;
+    }
+    
+    for(var i = 0; i<todoDatabase.length; i++){
+
+        /* the alert only shows when the clicking object and current object text matches also their id not matches
+        (means the object skip itself)
+        */        
+        if(todoDatabase[i].text === todoInput.value && todoDatabase[i].id !== todoToBeUpdate.id){
+        alert("This todo is already exists");
+        return;
+        }
+
+    }    
     todoToBeUpdate.text = todoInput.value;
+    
     todoInput.value = "";
     addButton.style.display = "block";
     saveButton.style.display = "none";
