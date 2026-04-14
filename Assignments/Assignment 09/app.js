@@ -55,7 +55,7 @@ function renderTodo(){
             `<div class = "todos doneTodos">
                 <span>${(i+1) +". "+ todoDatabase[i].text}</span>
 
-                <button disabled onClick="doneTodo(${todoDatabase[i].id})">
+                <button disabled type="button" id="editButton" onClick="doneTodo(${todoDatabase[i].id})">
                     <img src="./assets/images/doneIcon.svg" alt="done icon image" width="40px" height ="30px" >
                 </button>
 
