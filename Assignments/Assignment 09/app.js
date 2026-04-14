@@ -127,6 +127,11 @@ function updateTodo(){
     var addButton = document.getElementById('addButton');
     var saveButton = document.getElementById('saveButton');
 
+    // Empty input validation
+    if(todoInput.value.length < 1){
+        alert("Empty input detected! Please try again.");
+        return;
+    }
     // input length validation. should be greater than 2
     if(todoInput.value.length < 3){
         alert("Invalid input, Please try again.");
@@ -164,8 +169,12 @@ function deleteTodo(id){
 
            window.localStorage.setItem("todos", JSON.stringify(todoDatabase));// update the localStorage todos from todos array
 
-           renderTodo();
            todoInput.value = "";
+           if(saveButton.style.display === "block"){
+                saveButton.style.display = "none";
+                addButton.style.display = "block";
+            }
+           renderTodo();
        }
    }
 }
@@ -208,7 +217,7 @@ function deleteAllTodo(){
     todoDatabase = []; // reseting the todo array
     todoInput.value = "";
     if(saveButton.style.display === "block"){
-    saveButton.style.display = "none";
+        saveButton.style.display = "none";
         addButton.style.display = "block";
     }
     renderTodo();
