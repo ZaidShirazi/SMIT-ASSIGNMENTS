@@ -139,6 +139,12 @@ button {
 .doneTodos{
     text-decoration: line-through;
     opacity: 0.5;
+    pointer-events: none;
+
+    & #deleteButton{
+        pointer-events: auto; /* it allows cursor to change bcz none blocked the whole div so i need to add it */
+        cursor: pointer;
+    }
 }
 
 /* media queries for bigger screen */
