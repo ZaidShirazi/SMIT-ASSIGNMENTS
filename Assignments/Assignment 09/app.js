@@ -13,9 +13,14 @@ function addTodo(){
         alert("Empty input detected! Please try again.");
         return;
     }
-    // input length validation. should be greater than 2
-    if(todoInput.value.length < 3){
-        alert("Invalid input, Please try again.");
+    // Minimum length validation
+    if(todoInput.value.length < 2){
+        alert("Input length should be atleast 2 characters.");
+        return;
+    }
+    // Maximum length validation
+    if(todoInput.value.length > 150){
+        alert("Todo is too long.\nInput length cannot be greater than 150 characters.");
         return;
     }
 
@@ -132,9 +137,14 @@ function updateTodo(){
         alert("Empty input detected! Please try again.");
         return;
     }
-    // input length validation. should be greater than 2
-    if(todoInput.value.length < 3){
-        alert("Invalid input, Please try again.");
+    // Minimum length validation
+    if(todoInput.value.length < 2){
+        alert("Input length should be atleast 2 characters.");
+        return;
+    }
+    // Maximum length validation
+    if(todoInput.value.length > 150){
+        alert("Todo is too long.\nInput length cannot be greater than 150 characters.");
         return;
     }
     
