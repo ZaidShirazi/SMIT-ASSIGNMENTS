@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f7f6;
+  padding: 16px;
+}
+
+#registerationForm {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#registerationForm > legend {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+#registerationForm > div {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: transparent;
+  transition: border-color 0.2s ease;
+}
+
+small {
+  text-align: center;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+#registerInp {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+#registerInp:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 360px) {
+    body {
+        padding: 8px;
+    }
+
+    #registerationForm {
+        padding: 20px 16px; 
+        gap: 12px;
+    }
+
+    #registerationForm > legend {
+        font-size: 1.25rem; 
+    }
+
+    input {
+        padding: 10px; 
+        font-size: 15px;
+    }
+}
