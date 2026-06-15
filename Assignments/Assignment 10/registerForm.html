@@ -1,35 +1,47 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registeration Form</title>
-    <link rel="stylesheet" href="style.css" />
-    <script defer type="module" src="./app.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSS FILE LINKING -->
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+
+    <title>Sign Up</title>
   </head>
 
   <body>
-    <form id="registerationForm">
-      <legend>Registeration Form</legend>
+    <div id="main">
+      <h1>Sign Up</h1>
 
-      <div>
-        <input
-          type="email"
-          id="emailInp"
-          placeholder="Create email"
-          autofocus
-        />
-      </div>
+      <form id="registerationForm">
+        <div id="final-message"></div>
+        <div class="credential-container">
+          <input
+            type="email"
+            id="emailInp"
+            placeholder="Email Address*"
+            autofocus
+            autocomplete="off"
+          />
+          <small class="email-error"></small>
+          <input
+            type="password"
+            id="passwordInp"
+            placeholder="Password*"
+            autocomplete="off"
+          />
+          <small class="password-error"></small>
+        </div>
 
-      <div>
-        <input type="text" id="passwordInp" placeholder="Create password" />
-      </div>
+        <div id="registerationInp-Div">
+          <input type="submit" value="Create Account" id="registerInp" />
+        </div>
 
-      <div>
-        <input id="registerInp" type="submit" value="Register" />
-      </div>
+        <p>Already have an account? <a href="#">Login</a></p>
+      </form>
+    </div>
 
-      <small></small>
-    </form>
+    <!-- JS FILE LINKING -->
+    <script defer type="module" src="./app.js"></script>
   </body>
 </html>

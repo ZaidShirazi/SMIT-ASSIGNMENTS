@@ -2,118 +2,58 @@ import { auth, createUserWithEmailAndPassword } from "./firebaseConfig.js";
 
 const emailInput = document.querySelector("#emailInp");
 const passwordInput = document.querySelector("#passwordInp");
-const smallDiv = document.querySelector("small");
+const emailErrorDiv = document.querySelector(".email-error");
+const passwordErrorDiv = document.querySelector(".password-error");
 const resgisterationForm = document.querySelector("#registerationForm");
 
 // 1. Form Validation
 const isFormValid = () => {
-  const specialCharacters = [
-    "!",
-    '"',
-    "#",
-    "$",
-    "%",
-    "&",
-    "'",
-    "(",
-    ")",
-    "*",
-    "+",
-    ",",
-    "-",
-    ".",
-    "/",
-    ":",
-    ";",
-    "<",
-    "=",
-    ">",
-    "?",
-    "@",
-    "[",
-    "\\",
-    "]",
-    "^",
-    "_",
-    "`",
-    "{",
-    "|",
-    "}",
-    "~",
-  ];
+  emailErrorDiv.style.visibility = "hidden";
+  passwordErrorDiv.style.visibility = "hidden";
 
-  if (emailInput.value.length < 1 || passwordInput.value.length < 1) {
-    console.error(new Error("All fields are required!"));
+  // length validation logic
+  if (emailInput.value.length < 1) {
+    emailErrorDiv.style.visibility = "visible";
+    emailErrorDiv.innerText = "This field is required!";
+    emailErrorDiv.style.color = "red";
     return false;
   }
-  const userEmail = emailInput.value.toLowerCase();
-  const userEmail_LastIndex = emailInput.value.length - 1;
 
-  let atFound = false;
-  let dotFound = false;
-  let hasSpace = false;
-
-  let atCount = 0;
-  let atIndex = null;
-  let dotIndex = null;
-
-  for (let i = 0; i < userEmail.length; i++) {
-    if (userEmail[i] === "@") {
-      atCount++;
-      atFound = true;
-      atIndex = i;
-    }
-
-    if (userEmail[i] === ".") {
-      dotFound = true;
-      dotIndex = i;
-    }
-
-    if (userEmail[i] === " ") {
-      hasSpace = true;
-    }
-  }
-  // password validation
-  let specialCharacterFound = false;
-  const password = passwordInput.value;
-
-  for (let i = 0; i < specialCharacters.length; i++) {
-    for (let j = 0; j < password.length; j++) {
-      if (specialCharacters[i] === password[j]) {
-        specialCharacterFound = true;
-        break;
-      }
-    }
-    if (specialCharacterFound) {
-      break;
-    }
-  }
-
-  if (
-    atCount === 1 &&
-    atFound === true &&
-    dotFound === true &&
-    hasSpace === false &&
-    atIndex > 0 &&
-    dotIndex !== null &&
-    dotIndex > atIndex + 1 &&
-    userEmail_LastIndex >= dotIndex + 2 &&
-    password.length > 5 &&
-    specialCharacterFound === true
-  ) {
-    return true;
-  } else {
+  if (passwordInput.value.length < 1) {
+    passwordErrorDiv.style.visibility = "visible";
+    passwordErrorDiv.innerText = "This field is required!";
+    passwordErrorDiv.style.color = "red";
     return false;
   }
+  // email validation logic
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  if (!emailRegex.test(emailInput.value)) {
+    emailErrorDiv.style.visibility = "visible";
+    emailErrorDiv.innerText = "Please enter a valid email address!";
+    emailErrorDiv.style.color = "red";
+    return false;
+  }
+
+  // password validation logic
+  if (passwordInput.value.length < 6) {
+    passwordErrorDiv.style.visibility = "visible";
+    passwordErrorDiv.innerText = "Password should be at least 6 characters.";
+    passwordErrorDiv.style.color = "red";
+    return false;
+  }
+
+  // this true returns when all above checks are passed
+  return true;
 };
 
 // 2. Create User
 const createUser = async () => {
+  const finalMessage = document.querySelector("#final-message");
+
   try {
-    smallDiv.innerText = "";
     if (!isFormValid()) {
-      smallDiv.innerText = "Invalid email or password!";
-      smallDiv.style.color = "red";
+      console.error(new Error("Form Validation failed!"));
       return;
     }
 
@@ -124,16 +64,27 @@ const createUser = async () => {
     ).then((userCredential) => {
       // Signed up
       const user = userCredential.user;
-      smallDiv.innerText = "Account created successfully.";
-      smallDiv.style.color = "green";
 
       emailInput.value = "";
       passwordInput.value = "";
 
       console.log(user);
+      finalMessage.style.visibility = "visible";
+      finalMessage.style.color = "lightgreen";
+      finalMessage.innerText = "Account created successfully!";
+
+      setTimeout(() => {
+        finalMessage.style.visibility = "hidden";
+      }, 2000);
     });
   } catch (error) {
     console.error("Failed to create user account!", error);
+
+    if (error.code === "auth/email-already-in-use") {
+      emailErrorDiv.style.visibility = "visible";
+      emailErrorDiv.innerText = "This email address is already registered.";
+      emailErrorDiv.style.color = "red";
+    }
   }
 };
 
