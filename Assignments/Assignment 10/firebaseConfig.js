@@ -1,7 +1,11 @@
 // Import the functions I need from the SDKs I need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
 
@@ -40,4 +44,15 @@ const db = getFirestore(app);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-export { deleteDoc, doc, setDoc, addDoc, collection, db, getDocs, auth, createUserWithEmailAndPassword };
+export {
+  deleteDoc,
+  doc,
+  setDoc,
+  addDoc,
+  collection,
+  db,
+  getDocs,
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+};

@@ -4,21 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- CSS FILE LINKING -->
-    <link rel="stylesheet" href="./style.css" type="text/css" />
+    <link rel="stylesheet" href="./login.css" type="text/css" />
 
-    <title>Sign Up</title>
+    <title>Login</title>
   </head>
 
   <body>
-    <div id="main">
-      <h1>Sign Up</h1>
 
-      <form id="registerationForm">
+    <div id="main">
+      <h1>Login</h1>
+
+      <form id="login-Form">
         <div id="final-message"></div>
         <div class="credential-container">
           <input
             type="email"
-            id="emailInp"
+            id="email-Inp"
             placeholder="Email Address*"
             autofocus
             autocomplete="off"
@@ -26,22 +27,22 @@
           <small class="email-error"></small>
           <input
             type="password"
-            id="passwordInp"
+            id="password-Inp"
             placeholder="Password*"
             autocomplete="off"
           />
           <small class="password-error"></small>
         </div>
 
-        <div id="registerationInp-Div">
-          <input type="submit" value="Create Account" id="registerInp" />
+        <div id="loginInp-container">
+          <input type="submit" value="Login" id="login-Inp" />
         </div>
 
-        <p>Already have an account? <a href="#">Login</a></p>
+        <p>Don't have an account? <a href="./index.html">SignUp</a></p>
       </form>
     </div>
 
     <!-- JS FILE LINKING -->
-    <script defer type="module" src="./app.js"></script>
+    <script defer type="module" src="./login.js"></script>
   </body>
 </html>
