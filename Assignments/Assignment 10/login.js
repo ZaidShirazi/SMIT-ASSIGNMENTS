@@ -1,4 +1,5 @@
 import { auth, signInWithEmailAndPassword } from "./firebaseConfig.js";
+import { redirectUserIfLoggedIn } from "./authGuard.js";
 
 const emailInput = document.querySelector("#email-Inp");
 const passwordInput = document.querySelector("#password-Inp");
@@ -6,12 +7,14 @@ const emailErrorDiv = document.querySelector(".email-error");
 const passwordErrorDiv = document.querySelector(".password-error");
 const loginForm = document.querySelector("#login-Form");
 
+redirectUserIfLoggedIn(); // checking auth guard first
+
 // Form Validation
 const isFormValid = () => {
   emailErrorDiv.style.visibility = "hidden";
   passwordErrorDiv.style.visibility = "hidden";
 
-  // length validation logic
+  // email validation logic
   if (emailInput.value.length < 1) {
     emailErrorDiv.style.visibility = "visible";
     emailErrorDiv.innerText = "This field is required!";
@@ -19,14 +22,6 @@ const isFormValid = () => {
     return false;
   }
 
-  if (passwordInput.value.length < 1) {
-    passwordErrorDiv.style.visibility = "visible";
-    passwordErrorDiv.innerText = "This field is required!";
-    passwordErrorDiv.style.color = "red";
-    return false;
-  }
-
-  // email validation logic
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   if (!emailRegex.test(emailInput.value)) {
@@ -37,6 +32,13 @@ const isFormValid = () => {
   }
 
   // password validation logic
+  if (passwordInput.value.length < 1) {
+    passwordErrorDiv.style.visibility = "visible";
+    passwordErrorDiv.innerText = "This field is required!";
+    passwordErrorDiv.style.color = "red";
+    return false;
+  }
+
   if (passwordInput.value.length < 6) {
     passwordErrorDiv.style.visibility = "visible";
     passwordErrorDiv.innerText = "Password should be at least 6 characters!";
@@ -63,6 +65,7 @@ const userLogin = async () => {
     ).then((userCredential) => {
       // Logged in successfully
       const user = userCredential.user;
+      window.localStorage.setItem("uid", JSON.stringify(user.uid));
 
       emailInput.value = "";
       passwordInput.value = "";

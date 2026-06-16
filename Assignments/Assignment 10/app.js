@@ -1,4 +1,12 @@
-import { auth, createUserWithEmailAndPassword } from "./firebaseConfig.js";
+import { redirectUserIfLoggedIn } from "./authGuard.js";
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  addDoc,
+  collection,
+  db,
+  onAuthStateChanged,
+} from "./firebaseConfig.js";
 
 const emailInput = document.querySelector("#emailInp");
 const passwordInput = document.querySelector("#passwordInp");
@@ -6,7 +14,9 @@ const emailErrorDiv = document.querySelector(".email-error");
 const passwordErrorDiv = document.querySelector(".password-error");
 const resgisterationForm = document.querySelector("#registerationForm");
 
-// 1. Form Validation
+redirectUserIfLoggedIn(); // checking auth guard first
+
+//Form Validation
 const isFormValid = () => {
   emailErrorDiv.style.visibility = "hidden";
   passwordErrorDiv.style.visibility = "hidden";
@@ -47,7 +57,29 @@ const isFormValid = () => {
   return true;
 };
 
-// 2. Create User
+// add user to database
+const addUserInDatabase = async (user) => {
+  try {
+    let userData = {
+      uid: user?.uid,
+      displayName: user?.displayName,
+      email: user?.email,
+      phoneNumber: user?.phoneNumber,
+    };
+
+    await addDoc(collection(db, "Learning-DB"), userData).then(() => {
+      console.log("User added in database successfully.");
+
+      // store uid in local storage
+      window.localStorage.setItem("uid", JSON.stringify(userData.uid));
+    });
+  } catch (error) {
+    console.error(new Error("Failed to add user in database!"));
+    console.error(error);
+  }
+};
+
+// Create User
 const createUser = async () => {
   const finalMessage = document.querySelector("#final-message");
 
@@ -65,17 +97,20 @@ const createUser = async () => {
       // Signed up
       const user = userCredential.user;
 
-      emailInput.value = "";
-      passwordInput.value = "";
+      addUserInDatabase(user).then(() => {
+        emailInput.value = "";
+        passwordInput.value = "";
 
-      console.log(user);
-      finalMessage.style.visibility = "visible";
-      finalMessage.style.color = "lightgreen";
-      finalMessage.innerText = "Account created successfully!";
+        console.log(user);
+        finalMessage.style.visibility = "visible";
+        finalMessage.style.color = "lightgreen";
+        finalMessage.innerText = "Account created successfully!";
 
-      setTimeout(() => {
-        finalMessage.style.visibility = "hidden";
-      }, 2000);
+        setTimeout(() => {
+          finalMessage.style.visibility = "hidden";
+          window.location.replace("./dashboard.html");
+        }, 2000);
+      });
     });
   } catch (error) {
     console.error("Failed to create user account!", error);

@@ -5,6 +5,9 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  deleteUser,
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
@@ -17,6 +20,8 @@ import {
   addDoc,
   collection,
   getDocs,
+  query,
+  where,
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that I want to use
@@ -55,4 +60,10 @@ export {
   auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  deleteUser,
+  where,
+  query,
+  getAuth,
 };

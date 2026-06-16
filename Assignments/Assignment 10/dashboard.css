@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: #222831;
+  color: #e8e8e8;
+  /* background-color: beige; */
+}
+
+header {
+  padding: 8px;
+}
+
+nav {
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+
+  & button {
+    padding: 12px;
+    border-radius: 24px;
+    border: none;
+    outline: transparent;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+#deleteAcc-btn {
+  background-color: #ed3447;
+  color: white;
+}
+
+#welcome-div h1 {
+  background: linear-gradient(to right, #00e640, #a3ff78);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 40px;
+}
+
+#welcome-div h2 {
+  font-size: 32px;
+}
+
+/* media queries */
+@media (max-width: 600px) {
+  /* Shrinks navigation padding and spacing while keeping items side-by-side */
+  nav {
+    padding: 6px;
+    gap: 8px;
+  }
+
+  /* Reduces button size and padding for smaller touch screens */
+  nav button {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  /* Scales down large headings to prevent awkward line breaks */
+  #welcome-div h1 {
+    font-size: 26px;
+  }
+
+  #welcome-div h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 492px) {
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+  }
+
+  #welcome-div {
+    width: 50%; 
+
+    & h1 {
+      font-size: 18px; 
+    }
+
+    & h2 {
+      font-size: 14px;
+    }
+  }
+
+  #btns-container {
+    width: 50%; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    gap: 6px; 
+  }
+
+  button {
+    width: auto;
+    min-width: 100px;
+    padding: 8px 12px; 
+    font-size: 12px; 
+    white-space: nowrap; 
+  }
+}
