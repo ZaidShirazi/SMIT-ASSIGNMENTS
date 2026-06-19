@@ -14,7 +14,10 @@ const emailErrorDiv = document.querySelector(".email-error");
 const passwordErrorDiv = document.querySelector(".password-error");
 const resgisterationForm = document.querySelector("#registerationForm");
 
-redirectUserIfLoggedIn(); // checking auth guard first
+// redirectUserIfLoggedIn(); // checking auth guard first
+/*
+ this auth guard is creating issues in creating user in database so user logged in but cannot get the data because data is not created in data so get data function fails to fetch user data
+*/
 
 //Form Validation
 const isFormValid = () => {
@@ -62,7 +65,7 @@ const addUserInDatabase = async (user) => {
   try {
     let userData = {
       uid: user?.uid,
-      displayName: user?.displayName,
+      userName: user?.displayName,
       email: user?.email,
       phoneNumber: user?.phoneNumber,
     };
