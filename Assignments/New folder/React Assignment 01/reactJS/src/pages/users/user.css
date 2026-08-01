@@ -1,0 +1,74 @@
+
+.userinfo-card {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column; 
+  gap: 2rem;
+  background-color: #E7E7E7;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05), 
+    0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+    0 20px 40px -10px rgba(0, 0, 0, 0.15);
+}
+
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.avatar-container img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%; 
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.details-container h2 {
+  font-size: 1rem;
+  color: #374151; 
+  font-weight: 500;
+  line-height: 1.4;
+  word-break: break-word; 
+  
+}
+
+
+.details-container h2 strong {
+  color: #1e1b4b; 
+  font-weight: 700;
+}
+
+
+@media (min-width: 768px) {
+  .userinfo-card {
+    flex-direction: row;
+    padding: 3rem;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+
+  .avatar-container img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .details-container h2 {
+    font-size: 1.15rem;
+  }
+}
