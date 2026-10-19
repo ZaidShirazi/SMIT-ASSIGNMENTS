@@ -24,7 +24,7 @@ redirectUserIfLoggedOut(); // authGuard check
 // 01. get uid from local storage
 const getUidFromLocalStorage = () => {
   userId = JSON.parse(window.localStorage.getItem("uid"));
-  console.log("uid is :", userId);
+  // console.log("uid is :", userId);
 };
 getUidFromLocalStorage();
 
@@ -104,7 +104,7 @@ getUserFromDatabase().then(() => {
   const greetingUser = document.querySelector("#greeting-user");
 
   console.log("Got User from database successfully.");
-  console.log(currentUserData);
+  // console.log(currentUserData);
 
   // in case User data not found/fetched 
   if(!currentUserData){
@@ -114,10 +114,11 @@ getUserFromDatabase().then(() => {
 
   // getting username from fetched email
   const splittedEmail = currentUserData.email.split("@");
-  const emailBeforeAt = splittedEmail[0];
-  const userName = emailBeforeAt[0].slice(0,1).toUpperCase() + emailBeforeAt.slice(1);
+  let emailBeforeAt = splittedEmail[0];
+  emailBeforeAt = emailBeforeAt.replace(/[0-9]/g, ''); // strips out numbers from username
+  const userName = emailBeforeAt.charAt(0).toUpperCase() + emailBeforeAt.slice(1);
 
-  greetingUser.innerText = `Hello ${userName}`;
+  greetingUser.innerText = `Hello, ${userName}!`;
   
 });
 
