@@ -30,13 +30,7 @@ import {
 // My web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDePCmGlIIO44Ra9U3JynL9QYcVMd5y4Ds",
-  authDomain: "learning-db-61519.firebaseapp.com",
-  projectId: "learning-db-61519",
-  storageBucket: "learning-db-61519.firebasestorage.app",
-  messagingSenderId: "458264409328",
-  appId: "1:458264409328:web:120fee15577ecf1fbabe35",
-  measurementId: "G-KNQVMPR037",
+  //  Paste Firebase config here...
 };
 
 // Initialize Firebase
